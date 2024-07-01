@@ -35,7 +35,7 @@ import cardsRouter from './routes/cartas.routes.js';
 import historialRoutes from './routes/historial.routes.js';
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:4321' }));
+
 app.use(express.json());
 
 // Rutas
@@ -50,8 +50,9 @@ const server = http.createServer(app);
 // Crear una instancia de Socket.IO y adjuntarlo al servidor HTTP
 const io = new SocketIOServer(server, {
   cors: {
-    origin: 'http://localhost:4321', // Cambia esto a tu origen de frontend
-    methods: ['GET', 'POST']
+    origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
   }
 });
 
